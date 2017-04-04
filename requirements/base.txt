@@ -1,0 +1,24 @@
+# Versions are left out on purpose in order for you to use the latest ones.
+# After the first "pip install -r", just run "pip freeze" and add the version
+# to each package in each requirements/*.txt.
+
+# Django Framework
+django==1.11
+
+#django-model-utils
+
+# Configuration
+django-environ==0.4.1
+
+# Python-PostgreSQL Database Adapter
+psycopg2==2.7.1
+
+# For user registration, either via email or social
+# Well-built with regular release cycles!
+django-allauth==0.31.0
+
+# For user avatars 
+django-avatar==3.1.0 
+
+# crispy-forms 
+django-crispy-forms==1.6.1 
