@@ -1,0 +1,21 @@
+{% extends "base.html" %} 
+{% load i18n %} 
+{% load crispy_forms_tags %} 
+ 
+{% block head_title %}{% trans "Signup" %}{% endblock %} 
+ 
+{% block heading %} 
+  <h2>{% trans "Signup" %}</h2> 
+{% endblock %} 
+ 
+{% block content %} 
+ 
+  <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p> 
+ 
+  <form action="{% url "users:account_signup" %}" method="post" accept-charset="utf-8"> 
+    {{ form|crispy }} 
+    {% csrf_token %} 
+    <input type="hidden" name="next" value="{{ next }}"> 
+    <input class="btn btn-default" type="submit" value={% trans "Sign Up" %}> 
+  </form> 
+{% endblock %}
