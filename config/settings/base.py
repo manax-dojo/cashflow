@@ -65,6 +65,7 @@ THIRD_PARTY_APPS = (
 # Apps specific for this project go here.
 LOCAL_APPS = (
     # Your stuff: custom apps go here
+    'manax_theme_alpha.apps.ManaxThemeAlphaConfig',
     'users.apps.UsersConfig', 
     'homepage.apps.HomepageConfig',  
 )
