@@ -66,8 +66,9 @@ THIRD_PARTY_APPS = (
 LOCAL_APPS = (
     # Your stuff: custom apps go here
     'manax_theme_alpha.apps.ManaxThemeAlphaConfig',
-    'users.apps.UsersConfig', 
-    'homepage.apps.HomepageConfig',  
+    'users.apps.UsersConfig',
+    'homepage.apps.HomepageConfig',
+    'cashfield.apps.CashfieldConfig',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -205,7 +206,8 @@ SOCIALACCOUNT_ADAPTER = 'users.adapters.SocialAccountAdapter'
 # Custom user app defaults
 # Select the correct user model
 AUTH_USER_MODEL = 'users.User'
-LOGIN_REDIRECT_URL = 'users:redirect'
+#LOGIN_REDIRECT_URL = 'users:redirect'
+LOGIN_REDIRECT_URL = 'cashfield:home'
 LOGIN_URL = 'users:account_login' 
 
 # Location of root django.contrib.admin URL, use {% url 'admin:index' %}
@@ -222,6 +224,11 @@ AVATAR_DELETE_TEMPLATE = 'users/avatar/confirm_delete.html'
 # Your common stuff: Below this line define 3rd party library settings
 # ------------------------------------------------------------------------------
 
+# .currency.py for currency related settings
+try:
+    from .currency import *  # noqa
+except ImportError:
+    pass
 
 # .local.py overrides all the common settings.
 try:

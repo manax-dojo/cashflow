@@ -1,0 +1,20 @@
+{% load static %}
+
+{% block stylesheets_bootstrap %}
+<!-- Bootstrap -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+{% endblock stylesheets_bootstrap %}
+{% block stylesheets_other %}
+<!-- Font Awesome -->
+<link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.min.css' %}">
+<!-- Ionicons -->
+<link rel="stylesheet" type="text/css" href="{% static 'admin-lte/dist/css/AdminLTE.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'admin-lte/dist/css/skins/_all-skins.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'icheck/skins/square/blue.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'conflicts/conflicts.css' %}">
+{% endblock stylesheets_other %}
+{% block stylesheets_theme %}
+<!-- This file stores project-specific CSS -->
+<link rel="stylesheet" type="text/css" href="{% static 'manax_theme_alpha/css/styles.css' %}">
+{% endblock stylesheets_theme %}
+

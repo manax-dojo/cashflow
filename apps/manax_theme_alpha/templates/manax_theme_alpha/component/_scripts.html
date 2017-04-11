@@ -1,0 +1,18 @@
+{% load static %}
+
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+
+{% block javascript_jquery %}
+<!-- JQuery -->
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+{% endblock javascript_jquery %}
+{% block javascript_bootstrap %}
+<!-- Bootstrap -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+{% endblock javascript_bootstrap %}
+{% block javascript_theme %}
+<!-- place project specific Javascript in this file -->
+<script src="{% static 'manax_theme_alpha/js/scripts.js' %}"></script>
+{% endblock javascript_theme %}

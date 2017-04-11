@@ -20,7 +20,7 @@
     {% endblock favicon %}
 
     {% block stylesheets %}
-      {% include 'manax_theme_alpha/lib/_styles.html' %}
+      {% include 'manax_theme_alpha/component/_styles.html' %}
     {% endblock stylesheets %}
 
     {% block app_stylesheets %}
@@ -36,11 +36,11 @@
     <div class="{% block wrapper_class %}wrapper{% endblock wrapper_class %}">
 
       {% block nav_header %}
-        {% include 'manax_theme_alpha/lib/_main_header.html' %}
+        {% include 'manax_theme_alpha/component/_main_header.html' %}
       {% endblock nav_header %}
 
       {% block nav_sidebar %}
-        {% include 'manax_theme_alpha/lib/_main_sidebar.html' %}
+        {% include 'manax_theme_alpha/component/_main_sidebar.html' %}
       {% endblock nav_sidebar %}
 
       {% block content_wrapper %}
@@ -49,10 +49,10 @@
         {% block content_header %}
         <section class="content-header">
           <h1>
-            {% block page_name %}{% endblock %}
+            {% block page_name %}{% endblock page_name %}
             {% block no_description %}
-              <small>{% block page_description %}{% endblock %}</small>
-            {% endblock %}
+              <small>{% block page_description %}{% endblock page_description %}</small>
+            {% endblock no_description %}
           </h1>
           {% block breadcrumbs %}
             {# Breadcrumb implementation left to developers #}
@@ -63,7 +63,7 @@
         {% block content_outer %}
         <section class="content">
           {% block messages %}
-            {% include 'manax_theme_alpha/lib/_messages.html' %}
+            {% include 'manax_theme_alpha/component/_messages.html' %}
           {% endblock messages%}
 
           {% block content_block_wrap %}
@@ -74,13 +74,11 @@
         </section>
         {% endblock content_outer %}
 
-
-
       </div>
       {% endblock content_wrapper %}
 
       {% block nav_footer %}
-        {% include 'manax_theme_alpha/lib/_main_footer.html' %}
+        {% include 'manax_theme_alpha/component/_main_footer.html' %}
       {% endblock nav_footer %}
 
     </div>
@@ -91,7 +89,7 @@
   {% endblock extra_body %}
 
   {% block javascript %}
-  {% include 'manax_theme_alpha/lib/_scripts.html' %}
+  {% include 'manax_theme_alpha/component/_scripts.html' %}
   {% endblock javascript %}
 
   {% block app_javascript %}

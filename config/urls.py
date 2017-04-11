@@ -34,6 +34,9 @@ urlpatterns += i18n_patterns(
 
     # User avatar 
     url(r'^avatar/', include('avatar.urls')), 
+
+    # Cashfield app
+    url(r'^', include('cashfield.urls', namespace='cashfield')),  
 )
 
 if settings.DEBUG:
