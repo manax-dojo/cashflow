@@ -31,14 +31,18 @@
                 <tr>
                   <th>{% trans "Name" %}</th>
                   <th>{% trans "Currency" %}</th>
-                  <th>{% trans "Entry points" %}</th>
-                  <th>{% trans "Exit points" %}</th>
+                  <th>{% trans "Channels IN" %}</th>
+                  <th>{% trans "Channels OUT" %}</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for object in object_list %}
                 <tr>
-                  <td>{{ object.name }}</td>
+                  <td>
+                    <a href="{% url 'cashfield:container_detail' object.id %}" class="btn btn-primary active">
+                      {{ object.name }}
+                    </a>
+                  </td>
                   <td>{{ object.currency }}</td>
                   <td>{{ object.destination.count }}</td>
                   <td>{{ object.source.count }}</td>

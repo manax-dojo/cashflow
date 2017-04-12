@@ -19,11 +19,11 @@ urlpatterns = [
         view=views.ContainerAddView.as_view(),
         name='container_add'
     ),
-#    url(
-#        regex=r'^container/(?P<id>[^/]+)/$',
-#        view=views.ContainerDetailView.as_view(),
-#        name='container_detail'
-#    ),
+    url(
+        regex=r'^container/(?P<id>[^/]+)/$',
+        view=views.ContainerDetailView.as_view(),
+        name='container_detail'
+    ),
 #    url(
 #        regex=r'^container/(?P<id>[^/]+)/edit/$',
 #        view=views.ContainerUpdateView.as_view(),
@@ -51,11 +51,11 @@ urlpatterns = [
         view=views.ChannelAddView.as_view(),
         name='channel_add'
     ),
-#    url(
-#        regex=r'^channel/(?P<id>[^/]+)/$',
-#        view=views.ChannelDetailView.as_view(),
-#        name='channel_detail'
-#    ),
+    url(
+        regex=r'^channel/(?P<id>[^/]+)/$',
+        view=views.ChannelDetailView.as_view(),
+        name='channel_detail'
+    ),
 #    url(
 #        regex=r'^channel/(?P<id>[^/]+)/edit/$',
 #        view=views.ChannelUpdateView.as_view(),
@@ -83,11 +83,11 @@ urlpatterns = [
         view=views.TransferAddView.as_view(),
         name='transfer_add'
     ),
-#    url(
-#        regex=r'^transfer/(?P<id>[^/]+)/$',
-#        view=views.TransferDetailView.as_view(),
-#        name='transfer_detail'
-#    ),
+    url(
+        regex=r'^transfer/(?P<id>[^/]+)/$',
+        view=views.TransferDetailView.as_view(),
+        name='transfer_detail'
+    ),
 #    url(
 #        regex=r'^transfer/(?P<id>[^/]+)/edit/$',
 #        view=views.TransferUpdateView.as_view(),

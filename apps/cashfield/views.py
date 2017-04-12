@@ -38,6 +38,16 @@ class ContainerAddView(CreateView):
         return super(ContainerAddView, self).form_valid(form)
 
 @method_decorator(login_required, name='dispatch')
+class ContainerDetailView(DetailView):
+    """
+    """
+
+    template_name = 'cashfield/detail/container.html'
+    model = Container
+    context_object_name = 'container'
+    pk_url_kwarg = 'id'
+
+@method_decorator(login_required, name='dispatch')
 class ContainerHomeView(TemplateView):
     """
     """
@@ -67,6 +77,16 @@ class ChannelAddView(CreateView):
         return super(ChannelAddView, self).form_valid(form)
 
 @method_decorator(login_required, name='dispatch')
+class ChannelDetailView(DetailView):
+    """
+    """
+
+    template_name = 'cashfield/detail/channel.html'
+    model = Channel
+    context_object_name = 'channel'
+    pk_url_kwarg = 'id'
+
+@method_decorator(login_required, name='dispatch')
 class ChannelHomeView(TemplateView):
     """
     """
@@ -94,6 +114,16 @@ class TransferAddView(CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(TransferAddView, self).form_valid(form)
+
+@method_decorator(login_required, name='dispatch')
+class TransferDetailView(DetailView):
+    """
+    """
+
+    template_name = 'cashfield/detail/transfer.html'
+    model = Transfer
+    context_object_name = 'transfer'
+    pk_url_kwarg = 'id'
 
 
 @method_decorator(login_required, name='dispatch')

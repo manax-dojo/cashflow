@@ -37,7 +37,11 @@
                 <tbody>
                 {% for object in object_list %}
                 <tr>
-                  <td>{{ object.name }}</td>
+                  <td>
+                    <a href="{% url 'cashfield:channel_detail' object.id %}" class="btn btn-primary active">
+                      {{ object.name }}
+                    </a>
+                  </td>
                   <td>{{ object.source }}</td>
                   <td>{{ object.destination }}</td>
                 </tr>

@@ -13,7 +13,7 @@
           <hr class="intro-divider">
           {% if request.user.is_authenticated %}
           <!-- user logged -->
-          <a href="#" class="btn btn-default btn-lg">
+          <a href="{% url 'cashfield:home' %}" class="btn btn-default btn-lg">
             {% trans "Go to dashboard" %}
           </a>
           <!-- /user logged -->
