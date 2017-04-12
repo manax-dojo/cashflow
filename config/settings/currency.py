@@ -1,0 +1,2 @@
+CURRENCIES = ('EUR', )
+CURRENCY_CHOICES = (('EUR', 'EUR €'), )

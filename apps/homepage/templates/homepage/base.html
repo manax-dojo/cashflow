@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block app_stylesheets %}
+<link rel="stylesheet" type="text/css" href="{% static 'homepage/css/app.css' %}">
+{% endblock app_stylesheets %}
+
+{% block nav_header %}
+{% endblock nav_header %}
+
+{% block nav_sidebar %}
+{% endblock nav_sidebar %}
+
+
+
+
+      {% block content_wrapper %}
+      <div class="">
+
+        {% block content_header %}
+        <section class="content-header">
+          <h1>
+            {% block page_name %}{% endblock %}
+            {% block no_description %}
+              <small>{% block page_description %}{% endblock %}</small>
+            {% endblock %}
+          </h1>
+          {% block breadcrumbs %}
+            {# Breadcrumb implementation left to developers #}
+          {% endblock breadcrumbs %}
+        </section>
+        {% endblock content_header %}
+
+        {% block content_outer %}
+        <section class="content">
+          {% block messages %}
+            {% include 'manax_theme_alpha/component/_messages.html' %}
+          {% endblock messages%}
+
+          {% block content_block_wrap %}
+            <!-- content -->
+            {% block content %}It Works!!!{% endblock %}
+            <!-- /content -->
+          {% endblock %}
+        </section>
+        {% endblock content_outer %}
+
+      </div>
+      {% endblock content_wrapper %}

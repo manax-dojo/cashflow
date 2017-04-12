@@ -1,0 +1,77 @@
+{% extends "cashfield/base.html" %}
+{% load i18n %}
+
+{% block page_stylesheets %}
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.13/datatables.min.css"/>
+{% endblock page_stylesheets %}
+
+{% block page_name %}
+  {% trans "transfers" %}
+{% endblock page_name %}
+{% block page_description %}
+  <a href="{% url 'cashfield:transfer_add' %}" class="btn btn-primary active">
+    <i class="fa fa-user" aria-hidden="true"></i> {% trans "New" %}
+  </a>
+{% endblock page_description %}
+
+{% block content %}
+
+    <!-- Main content -->
+      <div class="row">
+        <div class="col-xs-12">
+
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">{% trans "transfers" %}</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="table" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>{% trans "Name" %}</th>
+                  <th>{% trans "Channel" %}</th>
+                  <th>{% trans "Start Value" %}</th>
+                  <th>{% trans "End Value" %}</th>
+                  <th>{% trans "Start Time" %}</th>
+                  <th>{% trans "End Time" %}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for object in object_list %}
+                <tr>
+                  <td>
+                    <a href="{% url 'cashfield:transfer_detail' object.id %}" class="btn btn-primary active">
+                      {{ object.name }}
+                    </a>
+                  </td>
+                  <td>{{ object.channel }}</td>
+                  <td>{{ object.start_value }}</td>
+                  <td>{{ object.end_value }}</td>
+                  <td>{{ object.start_time }}</td>
+                  <td>{{ object.end_time }}</td>
+                </tr>
+                {% endfor %}
+                </tfoot>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    <!-- /.content -->
+
+{% endblock content %}
+
+{% block page_javascript %}
+  <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.13/datatables.min.js"></script>
+
+  <script>
+    $(document).ready(function(){
+      $('table').DataTable();
+    });
+  </script>
+{% endblock page_javascript %}

@@ -1,0 +1,103 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+
+<html lang="{{ LANGUAGE_CODE }}">
+  <head>
+    {% block head_title_outer %}
+    <title>{% block head_title %}{{ site.name }}{% endblock head_title %}</title>
+    {% endblock head_title_outer%}
+
+    {% block meta %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
+    <meta name="viewport" content="{% block viewport %}width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no{% endblock viewport %}" />
+    <meta name="description" content="{% block description %}{% endblock description %}" />
+    <meta name="keywords" content="{% block keywords %}{% endblock keywords %}" />
+    {% endblock meta %}
+
+    {% block favicon %}
+    <link rel="icon" type="image/gif" href="{% static 'img/favicon.gif' %}">
+    {% endblock favicon %}
+
+    {% block stylesheets %}
+      {% include 'manax_theme_alpha/component/_styles.html' %}
+    {% endblock stylesheets %}
+
+    {% block app_stylesheets %}
+    {% endblock app_stylesheets %}
+
+    {% block extra_head %}
+    {% endblock extra_head %}
+  </head>
+
+  <body class="{% block body_class %}hold-transition skin-blue sidebar-mini{% endblock body_class %} {% block body_class_extra %}{% endblock body_class_extra %}" id="{% block body_id %}{% endblock body_id%} {% block body_extra_attributes %}{% endblock body_extra_attributes %}">
+
+    {% block body %}
+    <div class="{% block wrapper_class %}wrapper{% endblock wrapper_class %}">
+
+      {% block nav_header %}
+        {% include 'manax_theme_alpha/component/_main_header.html' %}
+      {% endblock nav_header %}
+
+      {% block nav_sidebar %}
+        {% include 'manax_theme_alpha/component/_main_sidebar.html' %}
+      {% endblock nav_sidebar %}
+
+      {% block content_wrapper %}
+      <div class="content-wrapper">
+
+        {% block content_header %}
+        <section class="content-header">
+          <h1>
+            {% block page_name %}{% endblock page_name %}
+            {% block no_description %}
+              <small>{% block page_description %}{% endblock page_description %}</small>
+            {% endblock no_description %}
+          </h1>
+          {% block breadcrumbs %}
+            {# Breadcrumb implementation left to developers #}
+          {% endblock breadcrumbs %}
+        </section>
+        {% endblock content_header %}
+
+        {% block content_outer %}
+        <section class="content">
+          {% block messages %}
+            {% include 'manax_theme_alpha/component/_messages.html' %}
+          {% endblock messages%}
+
+          {% block content_block_wrap %}
+            <!-- content -->
+            {% block content %}It Works!!!{% endblock %}
+            <!-- /content -->
+          {% endblock %}
+        </section>
+        {% endblock content_outer %}
+
+      </div>
+      {% endblock content_wrapper %}
+
+      {% block nav_footer %}
+        {% include 'manax_theme_alpha/component/_main_footer.html' %}
+      {% endblock nav_footer %}
+
+    </div>
+    {% endblock body %}
+
+
+  {% block extra_body %}
+  {% endblock extra_body %}
+
+  {% block javascript %}
+  {% include 'manax_theme_alpha/component/_scripts.html' %}
+  {% endblock javascript %}
+
+  {% block app_javascript %}
+  {% endblock app_javascript %}
+
+  {% block extra_body_base %}
+  {% endblock extra_body_base %}
+
+  </body>
+</html>
+
