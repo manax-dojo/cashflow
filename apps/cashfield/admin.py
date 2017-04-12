@@ -1,8 +1,12 @@
 from django.contrib import admin
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
+
 
 from .models import Container, Channel, Transfer, Balance
 
-class ContainerAdmin(admin.ModelAdmin):
+
+class ContainerAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 
     list_display_links = ('name', )
     list_display = ('user', 'name', 'currency')
@@ -17,7 +21,7 @@ class ContainerAdmin(admin.ModelAdmin):
         }),
     )
 
-class ChannelAdmin(admin.ModelAdmin):
+class ChannelAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 
     list_display_links = ('user', 'name', )
     list_display = ('user', 'name', 'source', 'destination')
@@ -32,7 +36,7 @@ class ChannelAdmin(admin.ModelAdmin):
         }),
     )
 
-class TransferAdmin(admin.ModelAdmin):
+class TransferAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 
     list_display_links = ('user', 'name', )
     list_display = ('user', 'name', 'channel',)
@@ -48,7 +52,7 @@ class TransferAdmin(admin.ModelAdmin):
         }),
     )
 
-class BalanceAdmin(admin.ModelAdmin):
+class BalanceAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 
     list_display_links = ('container', 'time', )
     list_display = ('container', 'time', )

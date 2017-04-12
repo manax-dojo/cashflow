@@ -57,8 +57,9 @@ THIRD_PARTY_APPS = (
     'allauth',  # registration
     'allauth.account',  # registration
     'allauth.socialaccount',  # registration
-    'avatar', # avatar 
-    'crispy_forms', 
+    'avatar', # avatar
+    'crispy_forms',
+    'import_export',
 )
 
 
