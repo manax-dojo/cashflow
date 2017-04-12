@@ -2,6 +2,13 @@
 {% load i18n %}
 {% load crispy_forms_tags %}
 
+
+{% block page_stylesheets %}
+  <!-- https://github.com/xdan/datetimepicker -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/jquery.datetimepicker.min.css"/>
+{% endblock page_stylesheets %}
+
+
 {% block page_name %}
   {% trans "New Transfer" %}
 {% endblock page_name %}
@@ -28,3 +35,17 @@
     <!-- /.content -->
 
 {% endblock content %}
+
+
+{% block page_javascript %}
+  <!-- https://github.com/xdan/datetimepicker -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.full.min.js"></script>
+
+  <script>
+    $(document).ready(function(){
+      $('#id_start_time').datetimepicker();
+      $('#id_end_time').datetimepicker();
+    });
+  </script>
+{% endblock page_javascript %}
+

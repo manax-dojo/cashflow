@@ -11,6 +11,7 @@ from django.urls import reverse_lazy
 from .models import Container, Channel, Transfer
 from .forms import ContainerForm, ChannelForm, TransferForm
 
+
 @method_decorator(login_required, name='dispatch')
 class HomeView(TemplateView):
     """
@@ -20,11 +21,13 @@ class HomeView(TemplateView):
 
 # Container
 
+
 @method_decorator(login_required, name='dispatch')
 class ContainerListView(ListView):
     template_name = 'cashfield/list/container.html'
     model = Container
     context_object_name = 'container'
+
 
 @method_decorator(login_required, name='dispatch')
 class ContainerAddView(CreateView):
@@ -37,6 +40,7 @@ class ContainerAddView(CreateView):
         form.instance.user = self.request.user
         return super(ContainerAddView, self).form_valid(form)
 
+
 @method_decorator(login_required, name='dispatch')
 class ContainerDetailView(DetailView):
     """
@@ -46,6 +50,7 @@ class ContainerDetailView(DetailView):
     model = Container
     context_object_name = 'container'
     pk_url_kwarg = 'id'
+
 
 @method_decorator(login_required, name='dispatch')
 class ContainerHomeView(TemplateView):
@@ -59,11 +64,13 @@ class ContainerHomeView(TemplateView):
 
 # Channel
 
+
 @method_decorator(login_required, name='dispatch')
 class ChannelListView(ListView):
     template_name = 'cashfield/list/channel.html'
     model = Channel
     context_object_name = 'channel'
+
 
 @method_decorator(login_required, name='dispatch')
 class ChannelAddView(CreateView):
@@ -76,6 +83,7 @@ class ChannelAddView(CreateView):
         form.instance.user = self.request.user
         return super(ChannelAddView, self).form_valid(form)
 
+
 @method_decorator(login_required, name='dispatch')
 class ChannelDetailView(DetailView):
     """
@@ -85,6 +93,7 @@ class ChannelDetailView(DetailView):
     model = Channel
     context_object_name = 'channel'
     pk_url_kwarg = 'id'
+
 
 @method_decorator(login_required, name='dispatch')
 class ChannelHomeView(TemplateView):
@@ -98,11 +107,13 @@ class ChannelHomeView(TemplateView):
 
 # Transfer
 
+
 @method_decorator(login_required, name='dispatch')
 class TransferListView(ListView):
     template_name = 'cashfield/list/transfer.html'
     model = Transfer
     context_object_name = 'transfer'
+
 
 @method_decorator(login_required, name='dispatch')
 class TransferAddView(CreateView):
@@ -114,6 +125,7 @@ class TransferAddView(CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(TransferAddView, self).form_valid(form)
+
 
 @method_decorator(login_required, name='dispatch')
 class TransferDetailView(DetailView):
