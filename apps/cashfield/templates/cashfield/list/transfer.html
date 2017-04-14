@@ -35,6 +35,9 @@
                   <th>{% trans "End Value" %}</th>
                   <th>{% trans "Start Time" %}</th>
                   <th>{% trans "End Time" %}</th>
+                  <th>{% trans "ratio IN" %}</th>
+                  <th>{% trans "ratio OUT" %}</th>
+                  <th>{% trans "duration" %}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -50,6 +53,9 @@
                   <td>{{ object.end_value }}</td>
                   <td>{{ object.start_time }}</td>
                   <td>{{ object.end_time }}</td>
+                  <td>{{ object.ratio_in|floatformat }}</td>
+                  <td>{{ object.ratio_out|floatformat }}</td>
+                  <td>{{ object.transfer_time }}</td>
                 </tr>
                 {% endfor %}
                 </tfoot>

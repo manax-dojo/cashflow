@@ -2,13 +2,13 @@
 {% load i18n %}
 
 {% block page_name %}
-  {% trans "container detail" %}
+  {% trans "channel delete" %}
 {% endblock page_name %}
 {% block page_description %}
-  <a href="{% url 'cashfield:container_update' object.id %}" class="btn btn-primary active">
+  <a href="#" class="btn btn-primary active">
     <i class="fa fa-user" aria-hidden="true"></i> {% trans "Edit" %}
   </a>
-  <a href="{% url 'cashfield:container_delete' object.id %}" class="btn btn-primary active">
+  <a href="{% url 'cashfield:transfer_delete' object.id %}" class="btn btn-primary active">
     <i class="fa fa-user" aria-hidden="true"></i> {% trans "Delete" %}
   </a>
 {% endblock page_description %}
@@ -21,20 +21,18 @@
 
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">{% trans "container detail" %}</h3>
+              <h3 class="box-title">{% trans "channel delete" %}</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              {% trans "Name" %}: {{ object.name }}
-              </br>
-              {% trans "Currency" %}: {{ object.currency }}
-              </br>
-              {% trans "Channels IN" %}: {{ object.destination.count }}
-              </br>
-              {% trans "Channels OUT" %}: {{ object.source.count }}
-              </br>
-              {% trans "Balance" %}:
-              </br>
+                        <!-- confirm --> 
+                        <form action="" method="post">
+                          {% csrf_token %}
+                          <p>Are you sure you want to delete "{{ object }}"?</p>
+                          <input type="submit" value="Confirm" />
+                          <button onclick="window.history.back();" class="btn btn-default" type="button">{% trans "Cancel" %}</button>
+                        </form>
+                        <!-- /confirm -->
             </div>
             <!-- /.box-body -->
           </div>

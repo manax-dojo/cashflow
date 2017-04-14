@@ -1,0 +1,30 @@
+{% extends "cashfield/base.html" %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block page_name %}
+  {% trans "New Channel" %}
+{% endblock page_name %}
+
+{% block content %}
+
+    <!-- Main content -->
+      <div class="row">
+        <div class="col-xs-12">
+
+          <div class="box">
+            <!-- /.box-header -->
+            <div class="box-body">
+              {% csrf_token %}
+              {% crispy form %}
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    <!-- /.content -->
+
+{% endblock content %}
