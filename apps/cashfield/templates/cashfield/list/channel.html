@@ -32,6 +32,7 @@
                   <th>{% trans "Name" %}</th>
                   <th>{% trans "Source" %}</th>
                   <th>{% trans "Destination" %}</th>
+                  <th>{% trans "Transfers" %}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -44,6 +45,7 @@
                   </td>
                   <td>{{ object.source }}</td>
                   <td>{{ object.destination }}</td>
+                  <td>{{ object.transfer.count }}</td>
                 </tr>
                 {% endfor %}
                 </tfoot>

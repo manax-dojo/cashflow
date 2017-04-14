@@ -5,10 +5,10 @@
   {% trans "channel detail" %}
 {% endblock page_name %}
 {% block page_description %}
-  <a href="#" class="btn btn-primary active">
+  <a href="{% url 'cashfield:channel_update' object.id %}" class="btn btn-primary active">
     <i class="fa fa-user" aria-hidden="true"></i> {% trans "Edit" %}
   </a>
-  <a href="#" class="btn btn-primary active">
+  <a href="{% url 'cashfield:channel_delete' object.id %}" class="btn btn-primary active">
     <i class="fa fa-user" aria-hidden="true"></i> {% trans "Delete" %}
   </a>
 {% endblock page_description %}
@@ -30,6 +30,24 @@
               {% trans "Source" %}: {{ object.source }}
               </br>
               {% trans "Destination" %}: {{ object.destination }}
+              </br>
+              {% trans "Transfers" %}: {{ object.transfer.count }}
+              </br>
+              {% trans "Total IN" %}: {{ stats.total_in }} {{ object.source.currency }}
+              </br>
+              {% trans "Total OUT" %}: {{ stats.total_out }} {{ object.destination.currency }}
+              </br>
+              {% trans "Average IN" %}: {{ stats.avg_in|floatformat }} {{ object.source.currency }}
+              </br>
+              {% trans "Average OUT" %}: {{ stats.avg_out|floatformat }} {{ object.destination.currency }}
+              </br>
+              {% trans "Max IN" %}: {{ stats.max_in }} {{ object.source.currency }}
+              </br>
+              {% trans "Max OUT" %}: {{ stats.max_out }} {{ object.destination.currency }}
+              </br>
+              {% trans "Min IN" %}: {{ stats.min_in }} {{ object.source.currency }}
+              </br>
+              {% trans "Min OUT" %}: {{ stats.min_out }} {{ object.destination.currency }}
               </br>
             </div>
             <!-- /.box-body -->

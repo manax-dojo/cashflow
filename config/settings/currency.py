@@ -1,2 +1,5 @@
-CURRENCIES = ('EUR', )
-CURRENCY_CHOICES = (('EUR', 'EUR €'), )
+CURRENCIES = ('EUR', 'THB', )
+CURRENCY_CHOICES = (
+    ('EUR', 'EUR'),
+    ('THB', 'THB'),
+)

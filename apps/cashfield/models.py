@@ -3,6 +3,8 @@ from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from django_extensions.db.models import TimeStampedModel
 
+from datetime import timedelta
+
 import moneyed
 from djmoney.models.fields import MoneyField
 from django.core.validators import MinValueValidator
@@ -35,6 +37,13 @@ class Container(TimeStampedModel):
 
     def __str__(self):
         return self.name
+
+    @property
+    def last_balance(self):
+        try:
+            return self.balance.latest('time')
+        except:
+            return 0
 
 class Channel(TimeStampedModel):
     """Channel model
@@ -77,6 +86,7 @@ class Channel(TimeStampedModel):
             return self.name
         else:
             return '[' + str(self.source) + '] -> [' + str(self.destination) + ']'
+
 
 class Transfer(TimeStampedModel):
     """Transfer model
@@ -132,6 +142,27 @@ class Transfer(TimeStampedModel):
         default=10,
         default_currency='EUR'
     )
+
+    @property
+    def ratio_in(self):
+        try:
+            return ( self.start_value.amount / self.end_value.amount )
+        except:
+            return 1
+
+    @property
+    def ratio_out(self):
+        try:
+            return ( self.end_value.amount / self.start_value.amount )
+        except:
+            return 1
+
+    @property
+    def transfer_time(self):
+        try:
+            return ( self.end_time - self.start_time )
+        except:
+            return timedelta(days=365)
 
 class Balance(TimeStampedModel):
     """Balance model

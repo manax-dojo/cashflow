@@ -5,10 +5,10 @@
   {% trans "container detail" %}
 {% endblock page_name %}
 {% block page_description %}
-  <a href="#" class="btn btn-primary active">
+  <a href="{% url 'cashfield:container_update' object.id %}" class="btn btn-primary active">
     <i class="fa fa-user" aria-hidden="true"></i> {% trans "Edit" %}
   </a>
-  <a href="#" class="btn btn-primary active">
+  <a href="{% url 'cashfield:container_delete' object.id %}" class="btn btn-primary active">
     <i class="fa fa-user" aria-hidden="true"></i> {% trans "Delete" %}
   </a>
 {% endblock page_description %}
@@ -32,6 +32,14 @@
               {% trans "Channels IN" %}: {{ object.destination.count }}
               </br>
               {% trans "Channels OUT" %}: {{ object.source.count }}
+              </br>
+              {% trans "Balance" %}: {{ object.last_balance.amount }} ({% trans "last update" %} {{ object.last_balance.time|timesince }} {% trans "ago" %})
+              </br>
+              {% trans "Total IN" %}: {{ stats.total_in }} {{ object.currency }}
+              </br>
+              {% trans "Total OUT" %}: {{ stats.total_out }} {{ object.currency }}
+              </br>
+              {% trans "Net FLOW" %}: {{ stats.net_flow }} {{ object.currency }}
               </br>
             </div>
             <!-- /.box-body -->
