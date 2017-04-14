@@ -12,7 +12,7 @@ from django.urls import reverse_lazy
 
 from .models import Container, Channel, Transfer
 from .forms import ContainerForm, ChannelForm, TransferForm
-from .utils import ChannelStats
+from .utils import ContainerStats, ChannelStats
 
 
 @method_decorator(login_required, name='dispatch')
@@ -53,6 +53,11 @@ class ContainerDetailView(DetailView):
     model = Container
     context_object_name = 'container'
     pk_url_kwarg = 'id'
+
+    def get_context_data(self, **kwargs):
+        context = super(ContainerDetailView, self).get_context_data(**kwargs) # get the default context data
+        context['stats'] = ContainerStats(self.object)
+        return context
 
 @method_decorator(login_required, name='dispatch')
 class ContainerUpdateView(UpdateView):

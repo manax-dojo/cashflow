@@ -38,6 +38,13 @@ class Container(TimeStampedModel):
     def __str__(self):
         return self.name
 
+    @property
+    def last_balance(self):
+        try:
+            return self.balance.latest('time')
+        except:
+            return 0
+
 class Channel(TimeStampedModel):
     """Channel model
 
