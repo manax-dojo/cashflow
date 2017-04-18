@@ -1,0 +1,44 @@
+{% extends "cashfield/base.html" %}
+{% load i18n %}
+
+{% block page_name %}
+  {% trans "combo detail" %}
+{% endblock page_name %}
+{% block page_description %}
+  <a href="{% url 'cashfield:combo_update' object.id %}" class="btn btn-primary active">
+    <i class="fa fa-user" aria-hidden="true"></i> {% trans "Edit" %}
+  </a>
+  <a href="{% url 'cashfield:combo_delete' object.id %}" class="btn btn-primary active">
+    <i class="fa fa-user" aria-hidden="true"></i> {% trans "Delete" %}
+  </a>
+{% endblock page_description %}
+
+{% block content %}
+
+    <!-- Main content -->
+      <div class="row">
+        <div class="col-xs-12">
+
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">{% trans "combo detail" %}</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              {% trans "Name" %}: {{ object.name }}
+              </br>
+              {% trans "Closed" %}: {{ object.closed }}
+              </br>
+              {% trans "Transfers" %}: {{ object.transfers.count }}
+              </br>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    <!-- /.content -->
+
+{% endblock content %}
