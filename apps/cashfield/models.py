@@ -1,7 +1,9 @@
 from django.db import models
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
-from django_extensions.db.models import TimeStampedModel
+#from django_extensions.db.models import TimeStampedModel
+from model_utils.models import TimeStampedModel
+
 
 from datetime import timedelta
 
