@@ -32,7 +32,7 @@ SECRET_KEY = env('DJANGO_SECRET_KEY')
 # ------------------------------------------------------------------------------
 # /SECRET KEY
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost').split(',')
+ALLOWED_HOSTS = env('ALLOWED_HOSTS')
 
 # MANAGER CONFIGURATION
 # ------------------------------------------------------------------------------
