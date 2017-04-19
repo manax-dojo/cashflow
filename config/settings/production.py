@@ -21,7 +21,7 @@ env.read_env(ENV_FILE)
 # DEBUG
 # ------------------------------------------------------------------------------
 DEBUG = False
-TEMPLATES['OPTIONS']['debug'] = DEBUG
+TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
 # ------------------------------------------------------------------------------
 # /DEBUG
 
