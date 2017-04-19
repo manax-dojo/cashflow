@@ -6,11 +6,15 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/dev/ref/settings/
 """
 
+# import
+# ------------------------------------------------------------------------------
 import environ
 import os
 import sys
 
 from django.utils.translation import ugettext_lazy as _
+# ------------------------------------------------------------------------------
+# /import
 
 # PATH vars
 # ------------------------------------------------------------------------------
@@ -22,17 +26,30 @@ APPS_DIR = root('apps')
 ENV_DIR = root('env')
 
 sys.path.append(APPS_DIR) 
+# ------------------------------------------------------------------------------
+# /PATH vars
 
+# ENV
+# ------------------------------------------------------------------------------
 env = environ.Env()
+# ------------------------------------------------------------------------------
+# /ENV
 
+
+# SECRET KEY
+# ------------------------------------------------------------------------------
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'CHANGE THIS!!!'
+SECRET_KEY = env('DJANGO_SECRET_KEY', default='CHANGEME!!!')
+# ------------------------------------------------------------------------------
+# /SECRET KEY
 
 # DEBUG
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#debug
 DEBUG = env.bool('DJANGO_DEBUG', False)
 #IN_TESTING = sys.argv[1:2] == ['test']
+# ------------------------------------------------------------------------------
+# /DEBUG
 
 ALLOWED_HOSTS = []
 
@@ -74,6 +91,8 @@ LOCAL_APPS = (
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+# ------------------------------------------------------------------------------
+# /APP CONFIGURATION
 
 # MIDDLEWARE CONFIGURATION
 # ------------------------------------------------------------------------------
@@ -106,6 +125,8 @@ DATABASES = {
         'PORT': '',  # Set to empty string for default.
     }
 }
+# ------------------------------------------------------------------------------
+# /DATABASE CONFIGURATION
 
 # GENERAL CONFIGURATION
 # ------------------------------------------------------------------------------
@@ -220,7 +241,8 @@ ADMIN_URL = r'^admin/'
 AVATAR_ADD_TEMPLATE = 'users/avatar/add.html'
 AVATAR_CHANGE_TEMPLATE = 'users/avatar/change.html'
 AVATAR_DELETE_TEMPLATE = 'users/avatar/confirm_delete.html'
-
+# ------------------------------------------------------------------------------
+# /AVATAR CONFIGURATION
 
 # Your common stuff: Below this line define 3rd party library settings
 # ------------------------------------------------------------------------------

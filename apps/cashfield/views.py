@@ -10,7 +10,7 @@ from django.views.generic import CreateView, DetailView, ListView, UpdateView, D
 
 from django.urls import reverse_lazy
 
-from .models import Container, Channel, Transfer
+from .models import Container, Channel, Transfer, Balance, Combo
 from .forms import ContainerForm, ChannelForm, TransferForm
 from .utils import ContainerStats, ChannelStats
 
@@ -267,3 +267,87 @@ class TransferHomeView(TemplateView):
         return redirect('cashfield:transfer_list')
 
 # /Transfer
+
+# Balance
+# /Balance
+
+# Combo
+
+
+@method_decorator(login_required, name='dispatch')
+class ComboListView(ListView):
+    template_name = 'cashfield/list/combo.html'
+    model = Combo
+    context_object_name = 'combo'
+
+
+@method_decorator(login_required, name='dispatch')
+class ComboAddView(CreateView):
+    """
+    """
+
+    template_name = 'cashfield/add/combo.html'
+    model = Combo
+    form_class = TransferForm
+    success_url = reverse_lazy('cashfield:combo_list')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(ComboAddView, self).form_valid(form)
+
+
+@method_decorator(login_required, name='dispatch')
+class ComboDetailView(DetailView):
+    """
+    """
+
+    template_name = 'cashfield/detail/combo.html'
+    model = Combo
+    context_object_name = 'combo'
+    pk_url_kwarg = 'id'
+
+
+@method_decorator(login_required, name='dispatch')
+class ComboUpdateView(UpdateView):
+    """
+    """
+
+    template_name = 'cashfield/update/combo.html'
+    model = Combo
+    form_class = TransferForm
+    success_url = reverse_lazy('cashfield:combo_list')
+    pk_url_kwarg = 'id'
+
+    def get_object(self, *args, **kwargs):
+        obj = super(ComboUpdateView, self).get_object(*args, **kwargs)
+        if obj.user != self.request.user:
+            raise PermissionDenied() #or Http404
+        return obj
+
+
+@method_decorator(login_required, name='dispatch')
+class ComboDeleteView(DeleteView):
+    """
+    """
+
+    template_name = 'cashfield/delete/combo.html'
+    model = Combo
+    pk_url_kwarg = 'id'
+    success_url = reverse_lazy('cashfield:combo_list')
+
+    def get_object(self, *args, **kwargs):
+        obj = super(ComboDeleteView, self).get_object(*args, **kwargs)
+        if obj.user != self.request.user:
+            raise PermissionDenied() #or Http404
+        return obj
+
+
+@method_decorator(login_required, name='dispatch')
+class ComboHomeView(TemplateView):
+    """
+    """
+
+    def get(self, request):
+        return redirect('cashfield:combo_list')
+
+# /Combo

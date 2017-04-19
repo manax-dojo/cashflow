@@ -33,13 +33,15 @@
               </br>
               {% trans "Channels OUT" %}: {{ object.source.count }}
               </br>
-              {% trans "Balance" %}: {{ object.last_balance.amount }} ({% trans "last update" %} {{ object.last_balance.time|timesince }} {% trans "ago" %})
-              </br>
               {% trans "Total IN" %}: {{ stats.total_in }} {{ object.currency }}
               </br>
               {% trans "Total OUT" %}: {{ stats.total_out }} {{ object.currency }}
               </br>
               {% trans "Net FLOW" %}: {{ stats.net_flow }} {{ object.currency }}
+              </br>
+              {% trans "Last Balance" %}: {{ object.last_balance.amount }} ({% trans "last update" %} {{ object.last_balance.time|timesince }} {% trans "ago" %})
+              </br>
+              {% trans "Current Balance" %}: {{ stats.current_balance }}
               </br>
             </div>
             <!-- /.box-body -->

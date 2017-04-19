@@ -21,18 +21,28 @@
 
             {% block nav_links %}
                 <li class="treeview">
+                    <a href="{% url 'cashfield:home' %}">
+                        <i class="fa fa-dashboard"></i> <span>{% trans "dashboard" %}</span>
+                    </a>
+                </li>
+                <li class="treeview">
                     <a href="{% url 'cashfield:container_home' %}">
                         <i class="fa {{ menu.icon_classes }}"></i> <span>{% trans "container" %}</span>
                     </a>
                 </li>
                 <li class="treeview">
                     <a href="{% url 'cashfield:channel_home' %}">
-                        <i class="fa {{ menu.icon_classes }}"></i> <span>{% trans "channel" %}</span>
+                        <i class="fa fa-road"></i> <span>{% trans "channel" %}</span>
                     </a>
                 </li>
                 <li class="treeview">
                     <a href="{% url 'cashfield:transfer_home' %}">
                         <i class="fa {{ menu.icon_classes }}"></i> <span>{% trans "transfer" %}</span>
+                    </a>
+                </li>
+                <li class="treeview">
+                    <a href="{% url 'cashfield:combo_home' %}">
+                        <i class="fa {{ menu.icon_classes }}"></i> <span>{% trans "combo" %}</span>
                     </a>
                 </li>
             {% endblock nav_links %}

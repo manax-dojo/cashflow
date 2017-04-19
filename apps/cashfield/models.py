@@ -5,9 +5,11 @@ from django_extensions.db.models import TimeStampedModel
 
 from datetime import timedelta
 
+from moneyed import Money
 import moneyed
 from djmoney.models.fields import MoneyField
 from django.core.validators import MinValueValidator
+
 
 class Container(TimeStampedModel):
     """Container model
@@ -43,7 +45,7 @@ class Container(TimeStampedModel):
         try:
             return self.balance.latest('time')
         except:
-            return 0
+            return Money(0, self.currency)
 
 class Channel(TimeStampedModel):
     """Channel model
@@ -143,6 +145,12 @@ class Transfer(TimeStampedModel):
         default_currency='EUR'
     )
 
+    def __str__(self):
+        if self.name:
+            return self.name
+        else:
+            return '[' + str(self.channel) + '] @ [' + str(self.start_time) + ']'
+
     @property
     def ratio_in(self):
         try:
@@ -192,3 +200,33 @@ class Balance(TimeStampedModel):
 
     def __str__(self):
         return str(self.container) + '@' + str(self.time)
+
+
+class Combo(TimeStampedModel):
+    """Combo model
+
+    TimeStampedModel defines fields:
+    created
+    modified
+    """
+
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        verbose_name=_('user'),
+        related_name='combo',
+        on_delete=models.CASCADE
+    )
+
+    name = models.CharField(
+        _('name'),
+        max_length=50,
+        blank=True,
+        null=True
+    )
+
+    closed = models.BooleanField(
+        _('closed'),
+        default=False
+    )
+
+    transfers = models.ManyToManyField(Transfer)

@@ -6,16 +6,26 @@ Local settings
 - Add django-extensions as app
 """
 
+# import
+# ------------------------------------------------------------------------------
 from .base import *  # noqa
+# ------------------------------------------------------------------------------
+# /import
 
+# ENV
+# ------------------------------------------------------------------------------
 ENV_FILE = str(ENV_DIR + '/local')
 env.read_env(ENV_FILE)
+# ------------------------------------------------------------------------------
+# /ENV
 
 # DEBUG
 # ------------------------------------------------------------------------------
 DEBUG = env.bool('DJANGO_DEBUG', default=True)
 TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
 IN_TESTING = env.bool('IN_TESTING', default=False)
+# ------------------------------------------------------------------------------
+# /DEBUG
 
 
 # django-debug-toolbar
@@ -45,6 +55,8 @@ ADMINS = (
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#managers
 MANAGERS = ADMINS
+# ------------------------------------------------------------------------------
+# /MANAGER CONFIGURATION
 
 
 # DATABASE CONFIGURATION
@@ -70,6 +82,8 @@ if IN_TESTING:
             'NAME': '/tmp/cashflow_test.db',
         }
     }
+# ------------------------------------------------------------------------------
+# /DATABASE CONFIGURATION
 
 # django-extensions
 # ------------------------------------------------------------------------------
