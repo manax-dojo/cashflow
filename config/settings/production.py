@@ -1,19 +1,48 @@
+"""
+Production settings
+
+- 
+"""
+
+# import
+# ------------------------------------------------------------------------------
 from .base import *  # noqa
 import os
+# ------------------------------------------------------------------------------
+# /import
 
+# ENV
+# ------------------------------------------------------------------------------
+ENV_FILE = str(ENV_DIR + '/production')
+env.read_env(ENV_FILE)
+# ------------------------------------------------------------------------------
+# /ENV
 
+# DEBUG
+# ------------------------------------------------------------------------------
 DEBUG = False
 TEMPLATES['OPTIONS']['debug'] = DEBUG
+# ------------------------------------------------------------------------------
+# /DEBUG
 
-SECRET_KEY = os.environ["SECRET_KEY"]
+# SECRET KEY
+# ------------------------------------------------------------------------------
+#SECRET_KEY = os.environ["SECRET_KEY"]
+SECRET_KEY = env('DJANGO_SECRET_KEY')
+# ------------------------------------------------------------------------------
+# /SECRET KEY
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost').split(',')
 
+# MANAGER CONFIGURATION
+# ------------------------------------------------------------------------------
 ADMINS = (
     ('Bruno Santeramo', 'bruno.santeramo@gmail.com'),
 )
 
 MANAGERS = ADMINS
+# ------------------------------------------------------------------------------
+# /MANAGER CONFIGURATION
 
 # DATABASE CONFIGURATION
 # ------------------------------------------------------------------------------
@@ -22,13 +51,19 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'cashflow',
-        'USER': os.environ['DB_USER'],
-        'PASSWORD': os.environ.get('DB_PASSWORD', ''),
-        'HOST': os.environ.get('DB_HOST', ''),
+        #'NAME': 'cashflow',
+        'NAME': env('DB_NAME'),
+        #'USER': os.environ['DB_USER'],
+        'USER': env('DB_USER'),
+        #'PASSWORD': os.environ.get('DB_PASSWORD', ''),
+        'PASSWORD': env('DB_PASSWORD', ''),
+        #'HOST': os.environ.get('DB_HOST', ''),
+        'HOST': env('DB_HOST', ''),
         'PORT': '',
     }
 }
+# ------------------------------------------------------------------------------
+# /DATABASE CONFIGURATION
 
 # PASSWORD VALIDATION
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-password-validators
