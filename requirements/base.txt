@@ -5,7 +5,8 @@
 # Django Framework
 django==1.11
 
-#django-model-utils
+# django-model-utils
+django-model-utils==3.0.0
 
 # Configuration
 django-environ==0.4.1
