@@ -32,7 +32,11 @@ SECRET_KEY = env('DJANGO_SECRET_KEY')
 # ------------------------------------------------------------------------------
 # /SECRET KEY
 
+# ALLOWED HOSTS
+# ------------------------------------------------------------------------------
 ALLOWED_HOSTS = env('ALLOWED_HOSTS')
+# ------------------------------------------------------------------------------
+# /ALLOWED HOSTS
 
 # MANAGER CONFIGURATION
 # ------------------------------------------------------------------------------
@@ -79,6 +83,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+# ------------------------------------------------------------------------------
+# /PASSWORD VALIDATION
 
 # AUTHENTICATION CONFIGURATION
 # ------------------------------------------------------------------------------
