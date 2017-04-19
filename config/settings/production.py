@@ -51,14 +51,10 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        #'NAME': 'cashflow',
         'NAME': env('DB_NAME'),
-        #'USER': os.environ['DB_USER'],
         'USER': env('DB_USER'),
-        #'PASSWORD': os.environ.get('DB_PASSWORD', ''),
-        'PASSWORD': env('DB_PASSWORD', ''),
-        #'HOST': os.environ.get('DB_HOST', ''),
-        'HOST': env('DB_HOST', ''),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': env('DB_HOST'),
         'PORT': '',
     }
 }
