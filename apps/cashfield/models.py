@@ -4,6 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 #from django_extensions.db.models import TimeStampedModel
 from model_utils.models import TimeStampedModel
 
+from django.db.models import Sum, Avg, Max, Min ## in attesa di passare a pandas
 
 from datetime import timedelta
 
@@ -91,6 +92,13 @@ class Channel(TimeStampedModel):
         else:
             return '[' + str(self.source) + '] -> [' + str(self.destination) + ']'
 
+    @property
+    def total_in(self):
+        return Money(self.transfer.aggregate(Sum('start_value'))['start_value__sum'], self.source.currency)
+
+    @property
+    def total_out(self):
+        return Money(self.transfer.aggregate(Sum('end_value'))['end_value__sum'], self.destination.currency)
 
 class Transfer(TimeStampedModel):
     """Transfer model
