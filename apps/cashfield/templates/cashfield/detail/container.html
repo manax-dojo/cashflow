@@ -51,7 +51,7 @@
                     </a>
                   </td>
                   <td>{{ c.name }}</td>
-                  <td style="white-space:nowrap;">{{ c.total_in }}</td>
+                  <td style="white-space:nowrap;">{{ c.total_out }}</td>
                 </tr>
                 {% endfor %}
               </tbody></table>
@@ -196,7 +196,7 @@
                 </tr>
                 {% for c in stats.ch_out %}
                 <tr>
-                  <td style="white-space:nowrap;">{{ c.total_out }}</td>
+                  <td style="white-space:nowrap;">{{ c.total_in }}</td>
                   <td>{{ c.name }}</td>
                   <td align="center" valign="middle" style="background-color:#6483c1; solid #44619a;">
                     <a href="{% url 'cashfield:container_detail' c.destination.id %}" style="display:block;color:#FFFFFF;">

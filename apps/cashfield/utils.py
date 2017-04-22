@@ -43,8 +43,8 @@ class ContainerStats():
         total_in = Money(0, self.container.currency)
         for c in self.ch_in:
 #            self.ch_in.c.total_out = ChannelStats(c).total_out
-            total_in = total_in + ChannelStats(c).total_out
-#            total_in = total_in + c.total_out
+#            total_in = total_in + ChannelStats(c).total_out
+            total_in = total_in + c.total_out
 
             
 
@@ -52,7 +52,8 @@ class ContainerStats():
 
         total_out = Money(0, self.container.currency)
         for c in self.ch_out:
-            total_out = total_out + ChannelStats(c).total_in
+#            total_out = total_out + ChannelStats(c).total_in
+            total_out = total_out + c.total_in
 
         self.total_out = total_out
 

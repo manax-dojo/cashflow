@@ -1,7 +1,6 @@
 from django.db import models
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
-#from django_extensions.db.models import TimeStampedModel
 from model_utils.models import TimeStampedModel
 
 from django.db.models import Sum, Avg, Max, Min ## in attesa di passare a pandas
