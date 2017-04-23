@@ -16,41 +16,208 @@
 {% block content %}
 
     <!-- Main content -->
+      <!-- .row -->
       <div class="row">
-        <div class="col-xs-12">
 
+        <!-- in -->
+        <div class="col-md-4">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">{% trans "container detail" %}</h3>
+              <center><h3 class="box-title">{% trans "IN" %}</h3></center>
             </div>
             <!-- /.box-header -->
-            <div class="box-body">
-              {% trans "Name" %}: {{ object.name }}
-              </br>
-              {% trans "Currency" %}: {{ object.currency }}
-              </br>
-              {% trans "Channels IN" %}: {{ object.destination.count }}
-              </br>
-              {% trans "Channels OUT" %}: {{ object.source.count }}
-              </br>
-              {% trans "Total IN" %}: {{ stats.total_in }} {{ object.currency }}
-              </br>
-              {% trans "Total OUT" %}: {{ stats.total_out }} {{ object.currency }}
-              </br>
-              {% trans "Net FLOW" %}: {{ stats.net_flow }} {{ object.currency }}
-              </br>
-              {% trans "Last Balance" %}: {{ object.last_balance.amount }} ({% trans "last update" %} {{ object.last_balance.time|timesince }} {% trans "ago" %})
-              </br>
-              {% trans "Current Balance" %}: {{ stats.current_balance }}
-              </br>
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-hover" width="100%" border="1px" cellpadding="0" cellspacing="0">
+                <tbody><tr>
+                  <th>Container</th>
+                  <th>Channel</th>
+                  <th>total</th>
+                </tr>
+                {% for c in stats.ch_in %}
+                <tr>
+                  <td align="center" valign="middle" style="background-color:#6483c1; border:1px solid #44619a;">
+                    <a href="{% url 'cashfield:container_detail' c.source.id %}" style="padding:1px; display:block;color:#FFFFFF; text-decoration:none;"><font color="#ffffff">{{ c.source }}</font></a>
+                  </td>
+                  <td align="center" valign="middle" style="background-color:#6483c1; border:1px solid #44619a;">
+                    <a href="{% url 'cashfield:channel_detail' c.id %}" style="padding:1px; display:block;color:#FFFFFF; text-decoration:none;" data-toggle="tooltip" data-original-title="{{ c.name }}">
+                      <font color="#ffffff"><i class="fa fa-arrow-right" aria-hidden="true"></i></font>
+                    </a>
+                  </td>
+                  <td align="center" valign="middle" style="background-color:#6483c1; border:1px solid #44619a; white-space:nowrap;">
+                    <a href="#" style="padding:1px; display:block;color:#FFFFFF; text-decoration:none;">
+                      <font color="#ffffff">{{ c.total_out }}</font>
+                    </a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody></table>
             </div>
             <!-- /.box-body -->
           </div>
-          <!-- /.box -->
         </div>
-        <!-- /.col -->
+        <!-- /in -->
+
+
+
+        <!-- middle column -->
+        <div class="col-md-4">
+          <!-- info -->
+          <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-aqua-active">
+              <h3 class="widget-user-username">{{ object.name }}</h3>
+              <h5 class="widget-user-desc"><!-- VUOI METTERE QUALCOS'ALTRO?? --></h5>
+            </div>
+            <div class="widget-user-image">
+              <img class="img-circle" src="../dist/img/user1-128x128.jpg" alt="User Avatar">
+            </div>
+            <div class="box-footer">
+              <div class="row">
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header">{{ object.currency }}</h5>
+                    <span class="description-text"><!-- VUOI METTERE QUALCOS'ALTRO?? --></span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header"></h5>
+                    <span class="description-text"><!-- VUOI METTERE QUALCOS'ALTRO?? --></span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4">
+                  <div class="description-block">
+                    <h5 class="description-header"></h5>
+                    <span class="description-text"><!-- VUOI METTERE QUALCOS'ALTRO?? --></span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+          <!-- /info -->
+
+          <!-- balance -->
+          <div class="info-box bg-yellow">
+            <span class="info-box-icon"><i class="fa fa-balance-scale" aria-hidden="true"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">{% trans "Balance" %}</span>
+              <span class="info-box-number">{{ stats.current_balance }}</span>
+
+              <div class="progress">
+                <div class="progress-bar" style="width: 50%"></div>
+              </div>
+              {% if object.last_balance %}
+              <span class="progress-description">
+                {{ object.last_balance.amount }} {% trans "confirmed" %} {{ object.last_balance.time|timesince }} {% trans "ago" %}
+              </span>
+              {% endif %}
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /balance -->
+
+
+
+          <!-- flow -->
+          <div class="box box-widget">
+            <div class="box-footer">
+              <div class="row">
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header">{{ stats.total_in }}</h5>
+                    <span class="description-text">{% trans "Total IN" %}</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header">{{ stats.net_flow }}</h5>
+                    <span class="description-text">{% trans "NET" %}</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4">
+                  <div class="description-block">
+                    <h5 class="description-header">{{ stats.total_out }}</h5>
+                    <span class="description-text">{% trans "Total OUT" %}</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+          <!-- /flow -->
+
+
+        </div>
+        <!-- /middle column -->
+
+
+
+        <!-- out -->
+        <div class="col-md-4">
+          <div class="box">
+            <div class="box-header">
+              <center><h3 class="box-title">{% trans "OUT" %}</h3></center>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-hover" width="100%" border="1px" cellpadding="0" cellspacing="0">
+                <tbody><tr>
+                  <th>total</th>
+                  <th>Channel</th>
+                  <th>Container</th>
+                </tr>
+                {% for c in stats.ch_out %}
+                <tr>
+                  <td align="center" valign="middle" style="background-color:#6483c1; border:1px solid #44619a; white-space:nowrap;">
+                    <a href="#" style="padding:1px; display:block;color:#FFFFFF; text-decoration:none;">
+                      <font color="#ffffff">{{ c.total_in }}</font>
+                    </a>
+                  </td>
+                  <td align="center" valign="middle" style="background-color:#6483c1; border:1px solid #44619a;">
+                    <a href="{% url 'cashfield:channel_detail' c.id %}" style="padding:1px; display:block;color:#FFFFFF; text-decoration:none;" data-toggle="tooltip" data-original-title="{{ c.name }}">
+                      <font color="#ffffff"><i class="fa fa-arrow-right" aria-hidden="true"></i></font>
+                    </a>
+                  </td>
+                  <td align="center" valign="middle" style="background-color:#6483c1; border:1px solid #44619a;">
+                    <a href="{% url 'cashfield:container_detail' c.destination.id %}" style="padding:1px; display:block;color:#FFFFFF; text-decoration:none;"><font color="#ffffff">{{ c.destination }}</font></a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody></table>
+
+
+            </div>
+            <!-- /.box-body -->
+          </div>
+        </div>
+        <!-- /out -->
+
       </div>
       <!-- /.row -->
     <!-- /.content -->
 
 {% endblock content %}
+
+{% block page_javascript %}
+  <script>
+    $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip({
+        placement : 'top'
+      });
+    });
+  </script>
+{% endblock page_javascript %}

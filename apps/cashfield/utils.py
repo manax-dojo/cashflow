@@ -37,18 +37,23 @@ class ContainerStats():
         """
         """
         self.container = container
-        ch_in = Channel.objects.all().filter(destination=container)
-        ch_out = Channel.objects.all().filter(source=container)
+        self.ch_in = Channel.objects.all().filter(destination=container)
+        self.ch_out = Channel.objects.all().filter(source=container)
 
         total_in = Money(0, self.container.currency)
-        for c in ch_in:
-            total_in = total_in + ChannelStats(c).total_out
+        for c in self.ch_in:
+#            self.ch_in.c.total_out = ChannelStats(c).total_out
+#            total_in = total_in + ChannelStats(c).total_out
+            total_in = total_in + c.total_out
+
+            
 
         self.total_in = total_in
 
         total_out = Money(0, self.container.currency)
-        for c in ch_out:
-            total_out = total_out + ChannelStats(c).total_in
+        for c in self.ch_out:
+#            total_out = total_out + ChannelStats(c).total_in
+            total_out = total_out + c.total_in
 
         self.total_out = total_out
 
@@ -59,24 +64,24 @@ class ContainerStats():
 
             current_balance = self.container.last_balance.amount
 
-            for c in ch_in:
-                print(c) ## DEBUG
-                t_in = Transfer.objects.all().filter(channel=c).filter(end_time__gt=self.container.last_balance.time)
-                plus = t_in.aggregate(Sum('end_value'))
-                print(plus) ## DEBUG
-                if plus['end_value__sum']:
-                    current_balance.amount = current_balance.amount + plus['end_value__sum']
-                print(current_balance, current_balance.amount) ## DEBUG
+            #for c in ch_in:
+            #    print(c) ## DEBUG
+            #    t_in = Transfer.objects.all().filter(channel=c).filter(end_time__gt=self.container.last_balance.time)
+            #    plus = t_in.aggregate(Sum('end_value'))
+            #    print(plus) ## DEBUG
+            #    if plus['end_value__sum']:
+            #        current_balance.amount = current_balance.amount + plus['end_value__sum']
+            #    print(current_balance, current_balance.amount) ## DEBUG
 
 
-            for c in ch_out:
-                print(c) ## DEBUG
-                t_out = Transfer.objects.all().filter(channel=c).filter(end_time__gt=self.container.last_balance.time)
-                minus = t_out.aggregate(Sum('start_value'))
-                print(plus) ## DEBUG
-                if minus['start_value__sum']:
-                    current_balance.amount = current_balance.amount - minus['start_value__sum']
-                print(current_balance, current_balance.amount) ## DEBUG
+            #for c in ch_out:
+            #    print(c) ## DEBUG
+            #    t_out = Transfer.objects.all().filter(channel=c).filter(end_time__gt=self.container.last_balance.time)
+            #    minus = t_out.aggregate(Sum('start_value'))
+            #    print(plus) ## DEBUG
+            #    if minus['start_value__sum']:
+            #        current_balance.amount = current_balance.amount - minus['start_value__sum']
+            #    print(current_balance, current_balance.amount) ## DEBUG
 
             self.current_balance = current_balance
 
