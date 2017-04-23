@@ -22,12 +22,16 @@ class ChannelStats():
         self.transfers = transfers
         self.total_in = Money(total_in['start_value__sum'], self.channel.source.currency)
         self.total_out = Money(total_out['end_value__sum'], self.channel.destination.currency)
+        self.total_ratio = total_out['end_value__sum'] / total_in['start_value__sum']
         self.avg_in = Money(avg_in['start_value__avg'], self.channel.source.currency)
         self.avg_out = Money(avg_out['end_value__avg'], self.channel.destination.currency)
+        self.avg_ratio = avg_out['end_value__avg'] / avg_in['start_value__avg']
         self.max_in = Money(max_in['start_value__max'], self.channel.source.currency)
         self.max_out = Money(max_out['end_value__max'], self.channel.destination.currency)
+        self.max_ratio = max_out['end_value__max'] / max_in['start_value__max']
         self.min_in = Money(min_in['start_value__min'], self.channel.source.currency)
         self.min_out = Money(min_out['end_value__min'], self.channel.destination.currency)
+        self.min_ratio = min_out['end_value__min'] / min_in['start_value__min']
 
 class ContainerStats():
     """

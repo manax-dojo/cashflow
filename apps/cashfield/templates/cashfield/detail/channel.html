@@ -30,7 +30,7 @@
             <div class="icon">
               <i class="fa fa-sign-out" aria-hidden="true"></i>
             </div>
-            <a href="#" class="small-box-footer">
+            <a href="{% url 'cashfield:container_detail' object.source.id %}" class="small-box-footer">
               More info <i class="fa fa-arrow-circle-right"></i>
             </a>
           </div>
@@ -95,7 +95,7 @@
             <div class="icon">
               <i class="fa fa-sign-in" aria-hidden="true"></i>
             </div>
-            <a href="#" class="small-box-footer">
+            <a href="{% url 'cashfield:container_detail' object.destination.id %}" class="small-box-footer">
               More info <i class="fa fa-arrow-circle-right"></i>
             </a>
           </div>
@@ -143,16 +143,16 @@
               <h3 class="profile-username text-center">{% trans "Ratio" %}</h3>
               <ul class="list-group list-group-unbordered">
                 <li class="list-group-item">
-                  <b>{% trans "TOTAL" %}</b> <a class="pull-right"></a>
+                  <b>{% trans "TOTAL" %}</b> <a class="pull-right">{{ stats.total_ratio|floatformat }}</a>
                 </li>
                 <li class="list-group-item">
-                  <b>{% trans "Max" %}</b> <a class="pull-right"></a>
+                  <b>{% trans "Max" %}</b> <a class="pull-right">{{ stats.max_ratio|floatformat }}</a>
                 </li>
                 <li class="list-group-item">
-                  <b>{% trans "Average" %}</b> <a class="pull-right"></a>
+                  <b>{% trans "Average" %}</b> <a class="pull-right">{{ stats.avg_ratio|floatformat }}</a>
                 </li>
                 <li class="list-group-item">
-                  <b>{% trans "Min" %}</b> <a class="pull-right"></a>
+                  <b>{% trans "Min" %}</b> <a class="pull-right">{{ stats.min_ratio|floatformat }}</a>
                 </li>
               </ul>
             </div>
