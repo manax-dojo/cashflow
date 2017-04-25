@@ -68,24 +68,17 @@ class ContainerStats():
 
             current_balance = self.container.last_balance.amount
 
-            #for c in ch_in:
-            #    print(c) ## DEBUG
-            #    t_in = Transfer.objects.all().filter(channel=c).filter(end_time__gt=self.container.last_balance.time)
-            #    plus = t_in.aggregate(Sum('end_value'))
-            #    print(plus) ## DEBUG
-            #    if plus['end_value__sum']:
-            #        current_balance.amount = current_balance.amount + plus['end_value__sum']
-            #    print(current_balance, current_balance.amount) ## DEBUG
+            for c in self.ch_in:
+                t_in = Transfer.objects.all().filter(channel=c).filter(end_time__gt=self.container.last_balance.time)
+                plus = t_in.aggregate(Sum('end_value'))
+                if plus['end_value__sum']:
+                    current_balance.amount = current_balance.amount - plus['end_value__sum']
 
-
-            #for c in ch_out:
-            #    print(c) ## DEBUG
-            #    t_out = Transfer.objects.all().filter(channel=c).filter(end_time__gt=self.container.last_balance.time)
-            #    minus = t_out.aggregate(Sum('start_value'))
-            #    print(plus) ## DEBUG
-            #    if minus['start_value__sum']:
-            #        current_balance.amount = current_balance.amount - minus['start_value__sum']
-            #    print(current_balance, current_balance.amount) ## DEBUG
+            for c in self.ch_out:
+                t_out = Transfer.objects.all().filter(channel=c).filter(start_time__gt=self.container.last_balance.time)
+                minus = t_out.aggregate(Sum('start_value'))
+                if minus['start_value__sum']:
+                    current_balance.amount = current_balance.amount - minus['start_value__sum']
 
             self.current_balance = current_balance
 

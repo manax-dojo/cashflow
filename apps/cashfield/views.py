@@ -14,6 +14,9 @@ from .models import Container, Channel, Transfer, Balance, Combo
 from .forms import ContainerForm, ChannelForm, TransferForm
 from .utils import ContainerStats, ChannelStats
 
+# per serializzare - serve per i grafici
+import json
+
 
 @method_decorator(login_required, name='dispatch')
 class HomeView(TemplateView):
@@ -351,3 +354,34 @@ class ComboHomeView(TemplateView):
         return redirect('cashfield:combo_list')
 
 # /Combo
+
+# Chart
+
+@method_decorator(login_required, name='dispatch')
+class ChartHomeView(TemplateView):
+    """
+    """
+
+    template_name = 'cashfield/chart/home.html'
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(ChartHomeView, self).get_context_data(**kwargs)
+
+        containers = Container.objects.all().filter(user=self.request.user)
+        IN = []
+        OUT = []
+        TEXT = []
+        BALANCE = []
+        for c in containers:
+            IN.append(str(ContainerStats(c).total_in.amount))
+            OUT.append(str(ContainerStats(c).total_out.amount))
+            TEXT.append(c.name + '<br>' + str(ContainerStats(c).current_balance))
+            BALANCE.append(str(ContainerStats(c).current_balance.amount))
+        context['IN'] = json.dumps(IN)
+        context['OUT'] = json.dumps(OUT)
+        context['TEXT'] = json.dumps(TEXT)
+        context['BALANCE'] = json.dumps(BALANCE)
+        return context
+
+# /Chart

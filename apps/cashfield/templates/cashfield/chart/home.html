@@ -1,0 +1,97 @@
+{% extends "cashfield/base.html" %}
+{% load i18n %}
+
+{% block page_name %}
+  {% trans "chart home" %}
+{% endblock page_name %}
+{% block page_description %}
+  <a href="#" class="btn btn-primary active">
+    <i class="fa fa-user" aria-hidden="true"></i> {% trans "Edit" %}
+  </a>
+  <a href="#" class="btn btn-primary active">
+    <i class="fa fa-user" aria-hidden="true"></i> {% trans "Delete" %}
+  </a>
+{% endblock page_description %}
+
+{% block content %}
+
+
+
+    <!-- Main content -->
+      <div class="row">
+        <div class="col-xs-12">
+
+          <div class="box">
+            <div class="box-body">
+
+  <div id="myDiv" style="width: 600px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    <!-- /.content -->
+
+{% endblock content %}
+
+{% block page_javascript %}
+  <!-- https://plot.ly/javascript/bubble-charts/ -->
+
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+  <script>
+
+//var IN = [1471, 50];
+//var OUT = [4238, 0];
+//var TEXT = ['conto Fineco 303382 (liquidità)<br>balance: 326.37 EUR<br>IN: 1471<br>OUT: 4238', 'conto ING 1495740<br>balance: 50<br>IN: 50<br>OUT: 0'];
+//var BALANCE = [360, 50];
+
+var IN = JSON.parse("{{ IN|escapejs }}");
+var OUT = JSON.parse("{{ OUT|escapejs }}");
+var TEXT = JSON.parse("{{ TEXT|escapejs }}");
+var BALANCE = JSON.parse("{{ BALANCE|escapejs }}");
+
+var trace1 = {
+  x: IN,
+  y: OUT,
+  text: TEXT,
+  mode: 'markers',
+  marker: {
+//    color: ['green', 'red'],
+    size: BALANCE,
+    sizemode: 'area'
+  },
+  hoverinfo:"text"
+};
+
+var data = [trace1];
+
+var layout = {
+  hovermode:'closest',
+  title: 'Bubble Chart Hover Text',
+  showlegend: false,
+  xaxis: {
+    title: 'total IN',
+    //autorange: true
+    //range: [ 0, 5000 ],
+    //type: 'log',
+  },
+  yaxis: {
+    title: 'total OUT',
+    //autorange: true
+    //range: [ 0, 5000 ],
+    //type: 'log',
+  },
+  height: 500,
+  width: 600
+};
+
+Plotly.newPlot('myDiv', data, layout);
+  </script>
+
+{% endblock page_javascript %}
