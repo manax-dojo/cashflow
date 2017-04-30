@@ -23,7 +23,7 @@ root = lambda *x: os.path.join(ROOT_DIR, *x)
 BASE_DIR = root('cashflow') 
 base = lambda *x: os.path.join(BASE_DIR, *x) 
 APPS_DIR = root('apps') 
-ENV_DIR = root('env')
+ENV_DIR = root('ienv')
 
 sys.path.append(APPS_DIR) 
 # ------------------------------------------------------------------------------
