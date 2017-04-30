@@ -377,7 +377,7 @@ class ChartHomeView(TemplateView):
             IN.append(str(ContainerStats(c).total_in.amount))
             OUT.append(str(ContainerStats(c).total_out.amount))
             TEXT.append(c.name + '<br>' + str(ContainerStats(c).current_balance))
-            BALANCE.append(str(ContainerStats(c).current_balance.amount))
+            BALANCE.append(str(10 + abs(ContainerStats(c).current_balance.amount)))
         context['IN'] = json.dumps(IN)
         context['OUT'] = json.dumps(OUT)
         context['TEXT'] = json.dumps(TEXT)
