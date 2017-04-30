@@ -72,7 +72,7 @@ class ContainerStats():
                 t_in = Transfer.objects.all().filter(channel=c).filter(end_time__gt=self.container.last_balance.time)
                 plus = t_in.aggregate(Sum('end_value'))
                 if plus['end_value__sum']:
-                    current_balance.amount = current_balance.amount - plus['end_value__sum']
+                    current_balance.amount = current_balance.amount + plus['end_value__sum']
 
             for c in self.ch_out:
                 t_out = Transfer.objects.all().filter(channel=c).filter(start_time__gt=self.container.last_balance.time)
@@ -83,4 +83,5 @@ class ContainerStats():
             self.current_balance = current_balance
 
         except:
-            self.current_balance = self.net_flow
+            #self.current_balance = self.net_flow
+            self.current_balance = Money(0, self.container.currency)
