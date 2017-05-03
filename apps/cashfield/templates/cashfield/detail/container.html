@@ -127,8 +127,12 @@
 
             <div class="info-box-content">
               <span class="info-box-text">{% trans "Balance" %}</span>
-              <span class="info-box-number">{{ stats.current_balance }}</span>
-<a href="{% url 'cashfield:balance_add' object.id %}" class="fm-create btn btn-primary" data-fm-head="Create" data-fm-callback="reload">Create new</a>
+              <span class="info-box-number">
+                {{ stats.current_balance }}
+                <a href="{% url 'cashfield:balance_add' object.id %}" class="fm-create" data-fm-head="Create" data-fm-callback="reload">
+                  <i class="fa fa-pencil" aria-hidden="true"></i>
+                </a>
+              </span>
               <div class="progress">
                 <div class="progress-bar" style="width: 50%"></div>
               </div>
