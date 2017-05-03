@@ -1,5 +1,23 @@
 {% extends "cashfield/base.html" %}
 {% load i18n %}
+{% load static %}
+{% load fm_tags %}
+
+{% block page_stylesheets %}
+<link rel="stylesheet" href="{% static "fm/css/modal.css" %}?v={% fm_version %}" />
+
+<style>
+.fm-modal {
+  max-height: calc(100% - 100px);
+  position: fixed;
+    top: 50%;
+    left: 50%;
+  transform: translate(-50%, -50%);
+}
+</style>
+   
+
+{% endblock page_stylesheets %}
 
 {% block page_name %}
   {% trans "container detail" %}
@@ -110,7 +128,7 @@
             <div class="info-box-content">
               <span class="info-box-text">{% trans "Balance" %}</span>
               <span class="info-box-number">{{ stats.current_balance }}</span>
-
+<a href="{% url 'cashfield:balance_add' object.id %}" class="fm-create btn btn-primary" data-fm-head="Create" data-fm-callback="reload">Create new</a>
               <div class="progress">
                 <div class="progress-bar" style="width: 50%"></div>
               </div>
@@ -209,10 +227,54 @@
       </div>
       <!-- /.row -->
     <!-- /.content -->
+    
+<div tabindex="-1" role="dialog" aria-hidden="true" id="fm-modal" class="fm-modal modal">
+  <div class="modal-loader" style="display: none;">
+    <img class="modal-loader-img" src="{% static "fm/img/loading-bars.svg" %}">
+  </div>
+  <div class="modal-dialog modal-content">
+    <div data-dismiss="modal" class="close-modal">
+      <div class="lr">
+        <div class="rl">
+        </div>
+      </div>
+    </div>
+    <div class="">
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+          <div class="modal-wrapper" style="display: none;">
+            <div class="modal-head"></div>
+            <div class="modal-body"></div>
+            <div class="modal-buttons">
+              <!--
+              <button class="btn btn-primary" type="submit">
+                {% trans 'OK' %}
+              </button>
+              -->
+              <button data-dismiss="modal" class="btn btn-default" type="button">
+                <i class="fa fa-times"></i>
+                {% trans 'Cancel' %}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endblock content %}
 
+
+
+
 {% block page_javascript %}
+
+  <script>
+    $(function() {
+      $.fm({debug: true});
+    });
+  </script>            
   <script>
     $(document).ready(function(){
       $('[data-toggle="tooltip"]').tooltip({
@@ -220,4 +282,5 @@
       });
     });
   </script>
+  <script type="text/javascript" src="{% static "fm/js/fm.js" %}?v={% fm_version %}"></script>
 {% endblock page_javascript %}

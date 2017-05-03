@@ -30,3 +30,6 @@ django-money==0.10.2
 
 # import-export
 django-import-export==0.5.1
+
+#django-fm (modal form)
+django-fm==0.2.5

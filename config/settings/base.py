@@ -77,6 +77,7 @@ THIRD_PARTY_APPS = (
     'avatar', # avatar
     'crispy_forms',
     'import_export',
+    'fm', # modal form
 )
 
 

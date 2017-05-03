@@ -197,6 +197,7 @@ class Balance(TimeStampedModel):
     )
 
     time = models.DateTimeField(
+        auto_now_add=True
     )
 
     amount = MoneyField(
