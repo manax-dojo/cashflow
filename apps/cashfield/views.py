@@ -66,6 +66,11 @@ class ContainerDetailView(DetailView):
         
     def post(self, request, *args, **kwargs):
         # Handle post method
+        #
+        # METTI UN CONTROLLO SUL POST DEL BALANCE
+        #
+        # CONTAINER_USER DEVE ESSERE UGUALE A REQUEST.USER
+        #
         return self.get(request, *args, **kwargs)        
                 
 
@@ -289,6 +294,10 @@ class BalanceAddView(AjaxCreateView):
     model = Balance 
     form_class = BalanceForm 
     success_url = reverse_lazy('cashfield:container_list') 
+    
+    def get_initial(self):
+        container = Container.objects.get(id=self.kwargs['container_id'])      
+        return { 'container': container }
      
     """ 
     def get_context_data(self, **kwargs): 

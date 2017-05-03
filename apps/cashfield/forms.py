@@ -61,7 +61,7 @@ class BalanceForm(forms.ModelForm):
     helper = FormHelper()  
      
     helper.layout = Layout( 
-        #Field('container', type="hidden", required=False), 
+        Field('container', type="hidden", required=True), 
         FormActions( 
             Submit('save_changes', 'Save changes', css_class="btn-primary"), 
         ) ,
