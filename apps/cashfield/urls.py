@@ -104,6 +104,13 @@ urlpatterns = [
         name='transfer_home'
     ),
     ### /transfer
+        ### balance  
+    url(  
+        regex=r'^balance/(?P<container_id>[^/]+)/add/$',  
+        view=views.BalanceAddView.as_view(),  
+        name='balance_add'  
+    ),  
+    ### /balance    
     ### combo
     url(
         regex=r'^combo/list/$',

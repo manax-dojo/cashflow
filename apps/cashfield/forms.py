@@ -53,3 +53,17 @@ class TransferForm(forms.ModelForm):
         )
     )
 
+class BalanceForm(forms.ModelForm):  
+    class Meta:  
+        model = Balance  
+        fields = ('amount', 'container')  
+  
+    helper = FormHelper()  
+     
+    helper.layout = Layout( 
+        #Field('container', type="hidden", required=False), 
+        FormActions( 
+            Submit('save_changes', 'Save changes', css_class="btn-primary"), 
+        ) ,
+        #HTML("<button data-dismiss='modal' class='btn btn-default' type='button'><i class='fa fa-times'></i>{% trans 'Cancel' %}</button>")
+    )     

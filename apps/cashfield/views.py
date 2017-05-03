@@ -10,8 +10,10 @@ from django.views.generic import CreateView, DetailView, ListView, UpdateView, D
 
 from django.urls import reverse_lazy
 
+from fm.views import AjaxCreateView
+
 from .models import Container, Channel, Transfer, Balance, Combo
-from .forms import ContainerForm, ChannelForm, TransferForm
+from .forms import ContainerForm, ChannelForm, TransferForm, BalanceForm
 from .utils import ContainerStats, ChannelStats
 
 # per serializzare - serve per i grafici
@@ -61,6 +63,11 @@ class ContainerDetailView(DetailView):
         context = super(ContainerDetailView, self).get_context_data(**kwargs) # get the default context data
         context['stats'] = ContainerStats(self.object)
         return context
+        
+    def post(self, request, *args, **kwargs):
+        # Handle post method
+        return self.get(request, *args, **kwargs)        
+                
 
 @method_decorator(login_required, name='dispatch')
 class ContainerUpdateView(UpdateView):
@@ -272,6 +279,32 @@ class TransferHomeView(TemplateView):
 # /Transfer
 
 # Balance
+
+@method_decorator(login_required, name='dispatch') 
+class BalanceAddView(AjaxCreateView): 
+    """ 
+    """ 
+ 
+    #template_name = 'cashfield/add/balance.html' 
+    model = Balance 
+    form_class = BalanceForm 
+    success_url = reverse_lazy('cashfield:container_list') 
+     
+    """ 
+    def get_context_data(self, **kwargs): 
+        # Call the base implementation first to get a context 
+        context = super(BalanceAddView, self).get_context_data(**kwargs) 
+ 
+        container = Container.objects.get(id=self.kwargs['container_id'])  
+        self.container = container 
+ 
+        return context     
+ 
+    def form_valid(self, form): 
+        form.container = self.container 
+        return super(ComboAddView, self).form_valid(form) 
+    """ 
+
 # /Balance
 
 # Combo
