@@ -19,7 +19,7 @@
             {% block nav_links_outer %}
             <li class="header">{% block nav_heading %}MAIN NAVIGATION{% endblock %}</li>
 
-            {% block nav_links %}
+                {% block nav_links %}
                 <li class="treeview">
                     <a href="{% url 'cashfield:home' %}">
                         <i class="fa fa-dashboard"></i> <span>{% trans "dashboard" %}</span>
@@ -45,7 +45,12 @@
                         <i class="fa {{ menu.icon_classes }}"></i> <span>{% trans "combo" %}</span>
                     </a>
                 </li>
-            {% endblock nav_links %}
+                <li class="treeview">
+                    <a href="{% url 'cashfield:chart_home' %}">
+                        <i class="fa fa-pie-chart" aria-hidden="true"></i> <span>{% trans "charts" %}</span>
+                    </a>
+                </li>
+                {% endblock nav_links %}
             {% endblock nav_links_outer %}
         </ul>
         {% endblock nav_links_ul %}

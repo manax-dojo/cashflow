@@ -43,8 +43,16 @@
                       {{ object.name }}
                     </a>
                   </td>
-                  <td>{{ object.source }}</td>
-                  <td>{{ object.destination }}</td>
+                  <td>
+                    <a href="{% url 'cashfield:container_detail' object.source.id %}">
+                      {{ object.source }}
+                    </a>
+                  </td>
+                  <td>
+                    <a href="{% url 'cashfield:container_detail' object.destination.id %}">
+                      {{ object.destination }}
+                    </a>
+                  </td>
                   <td>{{ object.transfer.count }}</td>
                 </tr>
                 {% endfor %}

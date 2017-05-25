@@ -16,47 +16,189 @@
 {% block content %}
 
     <!-- Main content -->
-      <div class="row">
-        <div class="col-xs-12">
 
-          <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">{% trans "channel detail" %}</h3>
+      <div class="row">
+
+        <!-- source -->
+        <div class="col-md-4">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3>{% trans "Source" %}</h3>
+              <p>{{ object.source }}</p>
             </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              {% trans "Name" %}: {{ object.name }}
-              </br>
-              {% trans "Source" %}: {{ object.source }}
-              </br>
-              {% trans "Destination" %}: {{ object.destination }}
-              </br>
-              {% trans "Transfers" %}: {{ object.transfer.count }}
-              </br>
-              {% trans "Total IN" %}: {{ stats.total_in }} {{ object.source.currency }}
-              </br>
-              {% trans "Total OUT" %}: {{ stats.total_out }} {{ object.destination.currency }}
-              </br>
-              {% trans "Average IN" %}: {{ stats.avg_in|floatformat }} {{ object.source.currency }}
-              </br>
-              {% trans "Average OUT" %}: {{ stats.avg_out|floatformat }} {{ object.destination.currency }}
-              </br>
-              {% trans "Max IN" %}: {{ stats.max_in }} {{ object.source.currency }}
-              </br>
-              {% trans "Max OUT" %}: {{ stats.max_out }} {{ object.destination.currency }}
-              </br>
-              {% trans "Min IN" %}: {{ stats.min_in }} {{ object.source.currency }}
-              </br>
-              {% trans "Min OUT" %}: {{ stats.min_out }} {{ object.destination.currency }}
-              </br>
+            <div class="icon">
+              <i class="fa fa-sign-out" aria-hidden="true"></i>
+            </div>
+            <a href="{% url 'cashfield:container_detail' object.source.id %}" class="small-box-footer">
+              More info <i class="fa fa-arrow-circle-right"></i>
+            </a>
+          </div>
+        </div>
+        <!-- /source -->
+
+        <!-- middle column -->
+        <div class="col-md-4">
+          <!-- info -->
+          <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-aqua-active">
+              <h3 class="widget-user-username">{{ object.name }}</h3>
+              <h5 class="widget-user-desc"><!-- VUOI METTERE QUALCOS'ALTRO?? --></h5>
+            </div>
+            <div class="widget-user-image">
+              <img class="img-circle" src="../dist/img/user1-128x128.jpg" alt="User Avatar">
+            </div>
+            <div class="box-footer">
+              <div class="row">
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <span class="description-text">{% trans "IN" %}</span>
+                    <h5 class="description-header">{{ object.source.currency }}</h5>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <span class="description-text">{% trans "transfers" %}</span>
+                    <h5 class="description-header">{{ object.transfer.count }}</h5>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4">
+                  <div class="description-block">
+                    <span class="description-text">{% trans "OUT" %}</span>
+                    <h5 class="description-header">{{ object.destination.currency }}</h5>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+          <!-- /info -->
+          
+          <!-- bottone per nuovo transfer -->
+          <div>
+  <a href="{% url 'cashfield:transfer_add' %}" class="btn btn-primary active">
+    <i class="fa fa-user" aria-hidden="true"></i> {% trans "New" %}
+  </a>          
+          </div>
+          <!-- /bottone per nuovo transfer -->
+                    
+          
+        </div>
+        <!-- /middle column -->
+
+
+        <!-- destination -->
+        <div class="col-md-4">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3>{% trans "Destination" %}</h3>
+              <p>{{ object.destination }}</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-sign-in" aria-hidden="true"></i>
+            </div>
+            <a href="{% url 'cashfield:container_detail' object.destination.id %}" class="small-box-footer">
+              More info <i class="fa fa-arrow-circle-right"></i>
+            </a>
+          </div>
+        </div>
+        <!-- /destination -->
+
+      </div>
+      <!-- /.row -->
+
+
+
+
+      <div class="row">
+
+        <!-- source -->
+        <div class="col-md-4">
+          <div class="box box-primary">
+            <div class="box-body box-profile">
+              <h3 class="profile-username text-center">{% trans "IN" %}</h3>
+              <ul class="list-group list-group-unbordered">
+                <li class="list-group-item">
+                  <b>{% trans "TOTAL" %}</b> <a class="pull-right">{{ stats.total_in }}</a>
+                </li>
+                <li class="list-group-item">
+                  <b>{% trans "Max" %}</b> <a class="pull-right">{{ stats.max_in }}</a>
+                </li>
+                <li class="list-group-item">
+                  <b>{% trans "Average" %}</b> <a class="pull-right">{{ stats.avg_in }}</a>
+                </li>
+                <li class="list-group-item">
+                  <b>{% trans "Min" %}</b> <a class="pull-right">{{ stats.min_in }}</a>
+                </li>
+              </ul>
             </div>
             <!-- /.box-body -->
           </div>
-          <!-- /.box -->
         </div>
-        <!-- /.col -->
+        <!-- /source -->
+
+
+        <!-- ratio -->
+        <div class="col-md-4">
+          <div class="box box-primary">
+            <div class="box-body box-profile">
+              <h3 class="profile-username text-center">{% trans "Ratio" %}</h3>
+              <ul class="list-group list-group-unbordered">
+                <li class="list-group-item">
+                  <b>{% trans "TOTAL" %}</b> <a class="pull-right">{{ stats.total_ratio|floatformat }}</a>
+                </li>
+                <li class="list-group-item">
+                  <b>{% trans "Max" %}</b> <a class="pull-right">{{ stats.max_ratio|floatformat }}</a>
+                </li>
+                <li class="list-group-item">
+                  <b>{% trans "Average" %}</b> <a class="pull-right">{{ stats.avg_ratio|floatformat }}</a>
+                </li>
+                <li class="list-group-item">
+                  <b>{% trans "Min" %}</b> <a class="pull-right">{{ stats.min_ratio|floatformat }}</a>
+                </li>
+              </ul>
+            </div>
+            <!-- /.box-body -->
+          </div>
+        </div>
+        <!-- /ratio -->
+
+        <!-- destination -->
+        <div class="col-md-4">
+          <div class="box box-primary">
+            <div class="box-body box-profile">
+              <h3 class="profile-username text-center">{% trans "OUT" %}</h3>
+              <ul class="list-group list-group-unbordered">
+                <li class="list-group-item">
+                  <b>{% trans "TOTAL" %}</b> <a class="pull-right">{{ stats.total_out }}</a>
+                </li>
+                <li class="list-group-item">
+                  <b>{% trans "Max" %}</b> <a class="pull-right">{{ stats.max_out }}</a>
+                </li>
+                <li class="list-group-item">
+                  <b>{% trans "Average" %}</b> <a class="pull-right">{{ stats.avg_out }}</a>
+                </li>
+                <li class="list-group-item">
+                  <b>{% trans "Min" %}</b> <a class="pull-right">{{ stats.min_out }}</a>
+                </li>
+              </ul>
+            </div>
+            <!-- /.box-body -->
+          </div>
+        </div>
+        <!-- /destination -->
+
+
       </div>
       <!-- /.row -->
-    <!-- /.content -->
 
+    <!-- /.content -->
 {% endblock content %}

@@ -104,6 +104,13 @@ urlpatterns = [
         name='transfer_home'
     ),
     ### /transfer
+        ### balance  
+    url(  
+        regex=r'^balance/(?P<container_id>[^/]+)/add/$',  
+        view=views.BalanceAddView.as_view(),  
+        name='balance_add'  
+    ),  
+    ### /balance    
     ### combo
     url(
         regex=r'^combo/list/$',
@@ -136,4 +143,36 @@ urlpatterns = [
         name='combo_home'
     ),
     ### /combo
+    ### charts
+    #url(
+    #    regex=r'^combo/list/$',
+    #    view=views.ComboListView.as_view(),
+    #    name='combo_list'
+    #),
+    #url(
+    #    regex=r'^combo/add/$',
+    #    view=views.ComboAddView.as_view(),
+    #    name='combo_add'
+    #),
+    #url(
+    #    regex=r'^combo/(?P<id>[^/]+)/$',
+    #    view=views.ComboDetailView.as_view(),
+    #    name='combo_detail'
+    #),
+    #url(
+    #    regex=r'^combo/(?P<id>[^/]+)/edit/$',
+    #    view=views.ComboUpdateView.as_view(),
+    #    name='combo_update'
+    #),
+    #url(
+    #    regex=r'^combo/(?P<id>[^/]+)/delete/$',
+    #    view=views.ComboDeleteView.as_view(),
+    #    name='combo_delete'
+    #),
+    url(
+        regex=r'^chart/$',
+        view=views.ChartHomeView.as_view(),
+        name='chart_home'
+    ),
+    ### /charts
 ]

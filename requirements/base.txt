@@ -3,12 +3,15 @@
 # to each package in each requirements/*.txt.
 
 # Django Framework
+# https://github.com/django/django
 django==1.11
 
 # django-model-utils
+# https://github.com/jazzband/django-model-utils
 django-model-utils==3.0.0
 
-# Configuration
+# django-environ
+# https://github.com/joke2k/django-environ
 django-environ==0.4.1
 
 # Python-PostgreSQL Database Adapter
@@ -30,3 +33,6 @@ django-money==0.10.2
 
 # import-export
 django-import-export==0.5.1
+
+#django-fm (modal form)
+django-fm==0.2.5

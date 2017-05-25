@@ -39,7 +39,7 @@ class ChannelAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 class TransferAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 
     list_display_links = ('user', 'name', )
-    list_display = ('user', 'name', 'channel',)
+    list_display = ('user', 'name', 'channel', 'start_time', 'end_time', 'start_value', 'end_value')
     fieldsets = (
         (None, {
             'fields': (

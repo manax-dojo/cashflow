@@ -48,7 +48,11 @@
                       {{ object.name }}
                     </a>
                   </td>
-                  <td>{{ object.channel }}</td>
+                  <td>
+                    <a href="{% url 'cashfield:channel_detail' object.channel.id %}">
+                      {{ object.channel }}
+                    </a>
+                  </td>
                   <td>{{ object.start_value }}</td>
                   <td>{{ object.end_value }}</td>
                   <td>{{ object.start_time }}</td>
