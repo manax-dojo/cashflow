@@ -1,0 +1,6 @@
+# PRODUCTION ENV 
+
+IN_TESTING=False 
+DJANGO_DEFAULT_FROM_EMAIL="noreply@example.com" 
+DJANGO_MAILGUN_API_KEY=key-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+DJANGO_MAILGUN_SENDER_DOMAIN="example.com" 
